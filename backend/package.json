@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.0",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^6.37.3",
+    "typeorm": "^0.3.20"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start": "node ./src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
