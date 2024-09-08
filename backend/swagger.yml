@@ -311,6 +311,241 @@ paths:
                   error:
                     type: string
                     example: Cliente não encontrado
+  
+
+  /lojas/save:
+    post:
+      summary: Cria uma nova loja
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Loja'
+      responses:
+        '201':
+          description: Loja criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loja'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/update:
+    put:
+      summary: Atualiza uma loja existente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Loja'
+      responses:
+        '200':
+          description: Loja atualizada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loja'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/delete:
+    delete:
+      summary: Remove uma loja existente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Loja'
+      responses:
+        '204':
+          description: Loja removida com sucesso
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/find/{id}:
+    get:
+      summary: Busca uma loja pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Loja encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loja'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/findAll:
+    get:
+      summary: Retorna todas as lojas
+      responses:
+        '200':
+          description: Lista de lojas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Loja'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/findCarros/{loja}:
+    get:
+      summary: Busca os carros disponíveis em uma loja
+      parameters:
+        - name: loja
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lista de carros
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carro'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /carros:
+    get:
+      summary: Lista todos os carros
+      tags:
+        - Carros
+      responses:
+        '200':
+          description: Lista de carros
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carro'
+        '500':
+          description: Erro no servidor
+    post:
+      summary: Adiciona um novo carro
+      tags:
+        - Carros
+      requestBody:
+        description: Dados do novo carro
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Carro'
+      responses:
+        '201':
+          description: Carro criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carro'
+        '500':
+          description: Erro no servidor
+
+    put:
+      summary: Atualiza um carro existente
+      tags:
+        - Carros
+      requestBody:
+        description: Dados atualizados do carro
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Carro'
+      responses:
+        '200':
+          description: Carro atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carro'
+        '500':
+          description: Erro no servidor
+
+  /carros/{id}:
+    get:
+      summary: Busca um carro por ID
+      tags:
+        - Carros
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID do carro
+      responses:
+        '200':
+          description: Carro encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carro'
+        '404':
+          description: Carro não encontrado
+        '500':
+          description: Erro no servidor
+
+    delete:
+      summary: Remove um carro por ID
+      tags:
+        - Carros
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID do carro
+      responses:
+        '204':
+          description: Carro removido com sucesso
+        '404':
+          description: Carro não encontrado
+        '500':
+          description: Erro no servidor
+
 components:
   schemas:
     Cliente:
@@ -363,3 +598,65 @@ components:
           type: string
         complemento:
           type: string
+
+    
+    Loja:
+      type: object
+      properties:
+        loja_id:
+          type: integer
+          example: 1
+        nome:
+          type: string
+          example: "Loja Exemplo"
+        cep:
+          type: string
+          example: "12345-678"
+
+    Carro:
+      type: object
+      properties:
+        carro_id:
+          type: integer
+          example: 1
+        placa:
+          type: string
+          example: "ABC-1234"
+        modelo:
+          type: string
+          example: "Civic"
+        marca:
+          type: string
+          example: "Honda"
+        ano:
+          type: integer
+          example: 2020
+        preco_aluguel_dia:
+          type: number
+          format: double
+          example: 120.00
+        url_foto:
+          type: string
+          example: "https://example.com/images/car1.jpg"
+        loja_id:
+          type: integer
+          example: 1
+        status:
+          $ref: '#/components/schemas/Status'
+
+    Status:
+      type: object
+      properties:
+        status_id:
+          type: integer
+          example: 1
+        descricao:
+          type: string
+          example: "Disponível"
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Erro ao processar a requisição"
