@@ -1,0 +1,365 @@
+openapi: 3.0.0
+info:
+  title: Cliente API
+  description: API para gerenciamento de clientes
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/api
+    description: Servidor local
+
+paths:
+  /cliente:
+    post:
+      summary: Cria um novo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clienteData:
+                  type: object
+                  properties:
+                    nome:
+                      type: string
+                      example: João da Silva
+                    telefone:
+                      type: string
+                      example: 1234567890
+                    cnh:
+                      type: string
+                      example: 12345678900
+                    cpf:
+                      type: string
+                      example: 12345678901
+                    sexo:
+                      type: string
+                      example: M
+                    nascimento:
+                      type: string
+                      format: date
+                      example: 1990-01-01
+                loginData:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      example: joao.silva@example.com
+                    senha:
+                      type: string
+                      example: senha123
+                enderecoData:
+                  type: object
+                  properties:
+                    cep:
+                      type: string
+                      example: 12345678
+                    estado:
+                      type: string
+                      example: SP
+                    cidade:
+                      type: string
+                      example: São Paulo
+                    logradouro:
+                      type: string
+                      example: Rua Exemplo
+                    numero:
+                      type: string
+                      example: 123
+                    bairro:
+                      type: string
+                      example: Centro
+                    complemento:
+                      type: string
+                      example: Apto 101
+      responses:
+        '200':
+          description: Cliente criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cliente:
+                    type: object
+                    properties:
+                      cliente_id:
+                        type: integer
+                        example: 1
+                      nome:
+                        type: string
+                        example: João da Silva
+                      telefone:
+                        type: string
+                        example: 1234567890
+                      cnh:
+                        type: string
+                        example: 12345678900
+                      cpf:
+                        type: string
+                        example: 12345678901
+                      sexo:
+                        type: string
+                        example: M
+                      nascimento:
+                        type: string
+                        format: date
+                        example: 1990-01-01
+                  login:
+                    type: object
+                    properties:
+                      login_id:
+                        type: integer
+                        example: 1
+                      email:
+                        type: string
+                        example: joao.silva@example.com
+                      senha:
+                        type: string
+                        example: senha123
+                  endereco:
+                    type: object
+                    properties:
+                      endereco_id:
+                        type: integer
+                        example: 1
+                      cep:
+                        type: string
+                        example: 12345678
+                      estado:
+                        type: string
+                        example: SP
+                      cidade:
+                        type: string
+                        example: São Paulo
+                      logradouro:
+                        type: string
+                        example: Rua Exemplo
+                      numero:
+                        type: string
+                        example: 123
+                      bairro:
+                        type: string
+                        example: Centro
+                      complemento:
+                        type: string
+                        example: Apto 101
+        '400':
+          description: Requisição inválida
+        '500':
+          description: Erro interno do servidor
+
+  /cliente/{id}:
+    get:
+      summary: Recupera um cliente pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do cliente
+      responses:
+        '200':
+          description: Cliente recuperado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cliente:
+                    type: object
+                    properties:
+                      cliente_id:
+                        type: integer
+                        example: 1
+                      nome:
+                        type: string
+                        example: João da Silva
+                      telefone:
+                        type: string
+                        example: 1234567890
+                      cnh:
+                        type: string
+                        example: 12345678900
+                      cpf:
+                        type: string
+                        example: 12345678901
+                      sexo:
+                        type: string
+                        example: M
+                      nascimento:
+                        type: string
+                        format: date
+                        example: 1990-01-01
+                  login:
+                    type: object
+                    properties:
+                      login_id:
+                        type: integer
+                        example: 1
+                      email:
+                        type: string
+                        example: joao.silva@example.com
+                      senha:
+                        type: string
+                        example: senha123
+                  endereco:
+                    type: object
+                    properties:
+                      endereco_id:
+                        type: integer
+                        example: 1
+                      cep:
+                        type: string
+                        example: 12345678
+                      estado:
+                        type: string
+                        example: SP
+                      cidade:
+                        type: string
+                        example: São Paulo
+                      logradouro:
+                        type: string
+                        example: Rua Exemplo
+                      numero:
+                        type: string
+                        example: 123
+                      bairro:
+                        type: string
+                        example: Centro
+                      complemento:
+                        type: string
+                        example: Apto 101
+        '404':
+          description: Cliente não encontrado
+        '500':
+          description: Erro interno do servidor
+  /cliente/login:
+    post:
+      summary: Realiza o login de um cliente
+      description: Autentica um cliente e retorna um token JWT se as credenciais estiverem corretas.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: joao.silva@example.com
+                senha:
+                  type: string
+                  example: senha123
+      responses:
+        '200':
+          description: Login bem-sucedido
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cliente:
+                    type: object
+                    properties:
+                      cliente_id:
+                        type: integer
+                        example: 1
+                      nome:
+                        type: string
+                        example: João da Silva
+                      telefone:
+                        type: string
+                        example: 1234567890
+                      cnh:
+                        type: string
+                        example: 12345678900
+                      cpf:
+                        type: string
+                        example: 12345678901
+                      sexo:
+                        type: string
+                        example: M
+                      nascimento:
+                        type: string
+                        format: date
+                        example: 1990-01-01
+                  token:
+                    type: string
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRlSWQiOiIxIiwgImVtYWlsIjoianVzdG9ncmFwaGVsQGV4YW1wbGUuY29tIn0.S5x6RjB1O8G6SHt0ZnTcC5MRPfVczG5t0LjLJzTk6FI'
+        '401':
+          description: Credenciais inválidas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Senha inválida
+        '404':
+          description: Cliente não encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Cliente não encontrado
+components:
+  schemas:
+    Cliente:
+      type: object
+      properties:
+        cliente_id:
+          type: integer
+        nome:
+          type: string
+        telefone:
+          type: string
+        cnh:
+          type: string
+        cpf:
+          type: string
+        sexo:
+          type: string
+        nascimento:
+          type: string
+          format: date
+    Login:
+      type: object
+      properties:
+        login_id:
+          type: integer
+        cliente_id:
+          type: integer
+        email:
+          type: string
+        senha:
+          type: string
+    Endereco:
+      type: object
+      properties:
+        endereco_id:
+          type: integer
+        cliente_id:
+          type: integer
+        cep:
+          type: string
+        estado:
+          type: string
+        cidade:
+          type: string
+        logradouro:
+          type: string
+        numero:
+          type: string
+        bairro:
+          type: string
+        complemento:
+          type: string

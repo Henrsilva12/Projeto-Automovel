@@ -1,5 +1,5 @@
 // src/entity/Endereco.js
-const { EntitySchema, JoinColumn } = require('typeorm');
+const { EntitySchema } = require('typeorm');
 const Cliente = require('./Cliente');
 
 const EnderecoSchema = new EntitySchema({
@@ -31,14 +31,17 @@ const EnderecoSchema = new EntitySchema({
     },
     complemento: {
       type: 'varchar'
+    },
+    cliente_id: {
+      type: 'int'
     }
   },
   relations: {
     cliente: {
       target: 'Cliente',
-      type: 'one-to-one',
-      joinColumn: { name: 'cliente_id' }, // Relaciona com cliente_id
-      inverseSide: 'endereco'
+      type: 'many-to-one',
+      joinColumn: { name: 'cliente_id' },
+      inverseSide: 'enderecos'
     }
   }
 });

@@ -50,12 +50,14 @@ class ClienteService {
     }
 
     async login(email, senha) {
-        const cliente = await this.clienteRepository.findByEmail(email);
-        if (!cliente) {
+        
+        const login = await this.clienteRepository.findByEmail(email);
+        
+        if (!login) {
             throw new Error('Cliente não encontrado');
         }
 
-        const loginData = cliente.login;
+        const loginData = {... login};
 
         const isMatch = await bcrypt.compare(senha, loginData.senha);
         if (!isMatch) {
@@ -63,10 +65,12 @@ class ClienteService {
         }
 
         const token = jwt.sign(
-            { clienteId: cliente.cliente_id, email: loginData.email },
+            { email: loginData.email },
             'your-secret-key',
             { expiresIn: '1h' }
         );
+
+        const cliente = await this.clienteRepository.findById(loginData.cliente_id);
 
         return { cliente, token };
     }

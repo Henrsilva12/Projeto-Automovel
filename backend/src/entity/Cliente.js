@@ -1,6 +1,5 @@
 // src/entity/Cliente.js
 const { EntitySchema } = require('typeorm');
-const Endereco = require('./Endereco');
 const Login = require('./Login');
 
 const ClienteSchema = new EntitySchema({
@@ -11,9 +10,6 @@ const ClienteSchema = new EntitySchema({
       type: 'int',
       primary: true,
       generated: true
-    },
-    endereco_id: {
-      type: 'int'
     },
     nome: {
       type: 'varchar'
@@ -35,20 +31,13 @@ const ClienteSchema = new EntitySchema({
     }
   },
   relations: {
-    endereco: {
-      target: 'Endereco',
-      type: 'one-to-one',
-      joinColumn: { name: 'endereco_id' },
-      inverseSide: 'cliente'
-    },
-    login: {
+    logins: {
       target: 'Login',
-      type: 'one-to-one',
-      joinColumn: { name: 'cliente_id' },
-      inverseSide: 'cliente'
+      type: 'one-to-many',
+      mappedBy: 'cliente'
     },
-    reservas: {
-      target: 'Reserva',
+    enderecos: {
+      target: 'Endereco',
       type: 'one-to-many',
       mappedBy: 'cliente'
     }

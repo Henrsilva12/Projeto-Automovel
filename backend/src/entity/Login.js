@@ -24,9 +24,9 @@ const LoginSchema = new EntitySchema({
   relations: {
     cliente: {
       target: 'Cliente',
-      type: 'one-to-one',
+      type: 'many-to-one',
       joinColumn: { name: 'cliente_id' },
-      inverseSide: 'login'
+      inverseSide: 'logins'
     }
   }
 });
