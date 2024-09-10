@@ -1,12 +1,12 @@
-import './App.css'
-import Login from './Pages/Login/Index'
-import Recuperar from '/Pages/Recuperar/indexRec'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './routers';
+
 
 function App() {
 
   return (
-    <Login />
-  )
+   <RouterProvider router={router} />
+  );
 }
 
 export default App
