@@ -1,0 +1,73 @@
+.page-container {
+  position: relative; /* Faz com que os filhos usem a posição relativa para sobrepor o fundo */
+  min-height: 100vh; /* Garante que o contêiner ocupe pelo menos a altura total da tela */
+  margin: 0;
+  padding: 10px 760px;
+  z-index: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #A50733;
+  padding: 10px 20px;
+  width: 97.5%;
+  position: fixed;
+  top: 0;               
+  left: 0;              
+  z-index: 1000;
+}
+
+.logo img {
+  width: 100px;
+}
+
+.navigation a, .dropbtn {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+
+}
+
+.navigate {
+  display: flex;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1001;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #FD1430;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #c30606;
+}
+
+/* Estilos para o conteúdo da página */
+.content {
+  padding-top: 70px; /* Adiciona um espaçamento para evitar que o conteúdo fique atrás do header fixo */
+  color: white; /* Ajuste a cor do texto se necessário */
+
+}

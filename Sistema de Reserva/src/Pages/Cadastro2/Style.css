@@ -1,0 +1,47 @@
+body {
+  background: #fff;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.forms2 {
+  color: #000;
+  padding: 8px 0;
+  border: none;
+  width: 100%;
+  margin-bottom: 2px solid #000;
+  font-weight: 500;
+  
+}
+
+input[type="text3"], input[type="numero3"]  {
+  border: none; /* Remove todas as bordas */
+  border-bottom: 1px solid black; /* Adiciona uma linha na parte inferior */
+  outline: none; /* Remove o contorno ao focar */
+  padding: 8px 0; /* Espaçamento interno para que o texto não fique muito colado na borda */
+  width: 100%; /* Faz o input ocupar a largura total do container */
+  margin-bottom: 10px;
+}
+
+input[type="text3"]:focus, input[type="numero3"]:focus {
+  border-bottom: 2px solid rgb(0, 0, 0); /* Muda a espessura e a cor da linha ao focar */
+
+}
+
+.container-conta {
+  color: #000;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  
+}
+
+p {
+  text-align: center;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  word-wrap: break-word;
+  margin: 15px;
+}

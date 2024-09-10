@@ -71,7 +71,9 @@ function Login() {
 
               
                 <div style={{ padding: '5px 10px', fontSize: '18px', textAlign: 'center' }}>
-                  <button type='button'>Entrar</button>
+                    <Link to={'/home'}>
+                     <button>Entrar</button>
+                    </Link>
                   <div className='divider'>
                     <label>OU</label>
                 </div>

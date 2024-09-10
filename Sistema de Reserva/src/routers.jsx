@@ -1,32 +1,58 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Login from './Pages/Login/Index'
-import Home from './Pages/Home'
+import Home from './Pages/Home/Index'
 import PrivateRoute from './PrivateRoute'
-import RecoverPassword from './Pages/Recuperar/indexRec'
-import Register from './Pages/Nova/IndexNova'
+import RecoverPassword from './Pages/Recuperar/Index'
+import NovaSenha from './Pages/NovaSenha/Index'
+import Cadastro from './Pages/Cadastro/Index'
+import Cadastro2 from './Pages/Cadastro2/Index'
+import Cadastro3 from './Pages/Cadastro3/Index'
+//import Ajuda from './Pages/Ajuda/Index'
+
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/login',
     element: <Login/>,
   },
+
   {
     path: '/home',
-    element:
-    (
+    element: <Home/>,
+  },
+/*
+  {
+    path: '/home',
+    element:  
+    ( 
       <PrivateRoute>
         <Home/>
       </PrivateRoute>
-    )
+    ) 
   },
+  */
   {
     path: '/recover_password',
     element: <RecoverPassword/>
   },
   {
+    path: '/novaSenha',
+    element: <NovaSenha/>
+  },
+
+  {
     path: '/register',
-    element: <Register/>
+    element: <Cadastro/>
+  },
+  {
+    path: '/register2',
+    element: <Cadastro2/>
+  },
+  {
+    path: '/register3',
+    element: <Cadastro3/>
   }
+
 ]);
 
 export {router};

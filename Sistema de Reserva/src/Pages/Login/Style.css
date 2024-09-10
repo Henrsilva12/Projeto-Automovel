@@ -41,7 +41,7 @@ body{
   border-left: none; 
   border-top: none;
   border-right: none;
-  border-bottom: 2px solid black; /*Linha da senha*/
+  border-bottom: 2px solid rgb(0, 0, 0); /*Linha da senha*/
 }
 /*Titulo: Login*/
 h1 {

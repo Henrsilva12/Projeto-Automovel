@@ -1,0 +1,26 @@
+body {
+  background: #fff;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.container-Recup{
+  color: #000;
+  height: 35px;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 800;
+  text-align: center;
+  word-wrap: break-word;
+  margin: 50px 0;
+  font-size: 30px;
+}
+p{
+  text-align: center;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  word-wrap: break-word;
+  margin: 10px;
+}
