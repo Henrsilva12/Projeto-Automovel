@@ -1,0 +1,662 @@
+openapi: 3.0.0
+info:
+  title: Cliente API
+  description: API para gerenciamento de clientes
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/api
+    description: Servidor local
+
+paths:
+  /cliente:
+    post:
+      summary: Cria um novo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clienteData:
+                  type: object
+                  properties:
+                    nome:
+                      type: string
+                      example: João da Silva
+                    telefone:
+                      type: string
+                      example: 1234567890
+                    cnh:
+                      type: string
+                      example: 12345678900
+                    cpf:
+                      type: string
+                      example: 12345678901
+                    sexo:
+                      type: string
+                      example: M
+                    nascimento:
+                      type: string
+                      format: date
+                      example: 1990-01-01
+                loginData:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      example: joao.silva@example.com
+                    senha:
+                      type: string
+                      example: senha123
+                enderecoData:
+                  type: object
+                  properties:
+                    cep:
+                      type: string
+                      example: 12345678
+                    estado:
+                      type: string
+                      example: SP
+                    cidade:
+                      type: string
+                      example: São Paulo
+                    logradouro:
+                      type: string
+                      example: Rua Exemplo
+                    numero:
+                      type: string
+                      example: 123
+                    bairro:
+                      type: string
+                      example: Centro
+                    complemento:
+                      type: string
+                      example: Apto 101
+      responses:
+        '200':
+          description: Cliente criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cliente:
+                    type: object
+                    properties:
+                      cliente_id:
+                        type: integer
+                        example: 1
+                      nome:
+                        type: string
+                        example: João da Silva
+                      telefone:
+                        type: string
+                        example: 1234567890
+                      cnh:
+                        type: string
+                        example: 12345678900
+                      cpf:
+                        type: string
+                        example: 12345678901
+                      sexo:
+                        type: string
+                        example: M
+                      nascimento:
+                        type: string
+                        format: date
+                        example: 1990-01-01
+                  login:
+                    type: object
+                    properties:
+                      login_id:
+                        type: integer
+                        example: 1
+                      email:
+                        type: string
+                        example: joao.silva@example.com
+                      senha:
+                        type: string
+                        example: senha123
+                  endereco:
+                    type: object
+                    properties:
+                      endereco_id:
+                        type: integer
+                        example: 1
+                      cep:
+                        type: string
+                        example: 12345678
+                      estado:
+                        type: string
+                        example: SP
+                      cidade:
+                        type: string
+                        example: São Paulo
+                      logradouro:
+                        type: string
+                        example: Rua Exemplo
+                      numero:
+                        type: string
+                        example: 123
+                      bairro:
+                        type: string
+                        example: Centro
+                      complemento:
+                        type: string
+                        example: Apto 101
+        '400':
+          description: Requisição inválida
+        '500':
+          description: Erro interno do servidor
+
+  /cliente/{id}:
+    get:
+      summary: Recupera um cliente pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do cliente
+      responses:
+        '200':
+          description: Cliente recuperado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cliente:
+                    type: object
+                    properties:
+                      cliente_id:
+                        type: integer
+                        example: 1
+                      nome:
+                        type: string
+                        example: João da Silva
+                      telefone:
+                        type: string
+                        example: 1234567890
+                      cnh:
+                        type: string
+                        example: 12345678900
+                      cpf:
+                        type: string
+                        example: 12345678901
+                      sexo:
+                        type: string
+                        example: M
+                      nascimento:
+                        type: string
+                        format: date
+                        example: 1990-01-01
+                  login:
+                    type: object
+                    properties:
+                      login_id:
+                        type: integer
+                        example: 1
+                      email:
+                        type: string
+                        example: joao.silva@example.com
+                      senha:
+                        type: string
+                        example: senha123
+                  endereco:
+                    type: object
+                    properties:
+                      endereco_id:
+                        type: integer
+                        example: 1
+                      cep:
+                        type: string
+                        example: 12345678
+                      estado:
+                        type: string
+                        example: SP
+                      cidade:
+                        type: string
+                        example: São Paulo
+                      logradouro:
+                        type: string
+                        example: Rua Exemplo
+                      numero:
+                        type: string
+                        example: 123
+                      bairro:
+                        type: string
+                        example: Centro
+                      complemento:
+                        type: string
+                        example: Apto 101
+        '404':
+          description: Cliente não encontrado
+        '500':
+          description: Erro interno do servidor
+  /cliente/login:
+    post:
+      summary: Realiza o login de um cliente
+      description: Autentica um cliente e retorna um token JWT se as credenciais estiverem corretas.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: joao.silva@example.com
+                senha:
+                  type: string
+                  example: senha123
+      responses:
+        '200':
+          description: Login bem-sucedido
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cliente:
+                    type: object
+                    properties:
+                      cliente_id:
+                        type: integer
+                        example: 1
+                      nome:
+                        type: string
+                        example: João da Silva
+                      telefone:
+                        type: string
+                        example: 1234567890
+                      cnh:
+                        type: string
+                        example: 12345678900
+                      cpf:
+                        type: string
+                        example: 12345678901
+                      sexo:
+                        type: string
+                        example: M
+                      nascimento:
+                        type: string
+                        format: date
+                        example: 1990-01-01
+                  token:
+                    type: string
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRlSWQiOiIxIiwgImVtYWlsIjoianVzdG9ncmFwaGVsQGV4YW1wbGUuY29tIn0.S5x6RjB1O8G6SHt0ZnTcC5MRPfVczG5t0LjLJzTk6FI'
+        '401':
+          description: Credenciais inválidas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Senha inválida
+        '404':
+          description: Cliente não encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Cliente não encontrado
+  
+
+  /lojas/save:
+    post:
+      summary: Cria uma nova loja
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Loja'
+      responses:
+        '201':
+          description: Loja criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loja'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/update:
+    put:
+      summary: Atualiza uma loja existente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Loja'
+      responses:
+        '200':
+          description: Loja atualizada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loja'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/delete:
+    delete:
+      summary: Remove uma loja existente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Loja'
+      responses:
+        '204':
+          description: Loja removida com sucesso
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/find/{id}:
+    get:
+      summary: Busca uma loja pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Loja encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loja'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/findAll:
+    get:
+      summary: Retorna todas as lojas
+      responses:
+        '200':
+          description: Lista de lojas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Loja'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /lojas/findCarros/{loja}:
+    get:
+      summary: Busca os carros disponíveis em uma loja
+      parameters:
+        - name: loja
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lista de carros
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carro'
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /carros:
+    get:
+      summary: Lista todos os carros
+      tags:
+        - Carros
+      responses:
+        '200':
+          description: Lista de carros
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carro'
+        '500':
+          description: Erro no servidor
+    post:
+      summary: Adiciona um novo carro
+      tags:
+        - Carros
+      requestBody:
+        description: Dados do novo carro
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Carro'
+      responses:
+        '201':
+          description: Carro criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carro'
+        '500':
+          description: Erro no servidor
+
+    put:
+      summary: Atualiza um carro existente
+      tags:
+        - Carros
+      requestBody:
+        description: Dados atualizados do carro
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Carro'
+      responses:
+        '200':
+          description: Carro atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carro'
+        '500':
+          description: Erro no servidor
+
+  /carros/{id}:
+    get:
+      summary: Busca um carro por ID
+      tags:
+        - Carros
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID do carro
+      responses:
+        '200':
+          description: Carro encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carro'
+        '404':
+          description: Carro não encontrado
+        '500':
+          description: Erro no servidor
+
+    delete:
+      summary: Remove um carro por ID
+      tags:
+        - Carros
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID do carro
+      responses:
+        '204':
+          description: Carro removido com sucesso
+        '404':
+          description: Carro não encontrado
+        '500':
+          description: Erro no servidor
+
+components:
+  schemas:
+    Cliente:
+      type: object
+      properties:
+        cliente_id:
+          type: integer
+        nome:
+          type: string
+        telefone:
+          type: string
+        cnh:
+          type: string
+        cpf:
+          type: string
+        sexo:
+          type: string
+        nascimento:
+          type: string
+          format: date
+    Login:
+      type: object
+      properties:
+        login_id:
+          type: integer
+        cliente_id:
+          type: integer
+        email:
+          type: string
+        senha:
+          type: string
+    Endereco:
+      type: object
+      properties:
+        endereco_id:
+          type: integer
+        cliente_id:
+          type: integer
+        cep:
+          type: string
+        estado:
+          type: string
+        cidade:
+          type: string
+        logradouro:
+          type: string
+        numero:
+          type: string
+        bairro:
+          type: string
+        complemento:
+          type: string
+
+    
+    Loja:
+      type: object
+      properties:
+        loja_id:
+          type: integer
+          example: 1
+        nome:
+          type: string
+          example: "Loja Exemplo"
+        cep:
+          type: string
+          example: "12345-678"
+
+    Carro:
+      type: object
+      properties:
+        carro_id:
+          type: integer
+          example: 1
+        placa:
+          type: string
+          example: "ABC-1234"
+        modelo:
+          type: string
+          example: "Civic"
+        marca:
+          type: string
+          example: "Honda"
+        ano:
+          type: integer
+          example: 2020
+        preco_aluguel_dia:
+          type: number
+          format: double
+          example: 120.00
+        url_foto:
+          type: string
+          example: "https://example.com/images/car1.jpg"
+        loja_id:
+          type: integer
+          example: 1
+        status:
+          $ref: '#/components/schemas/Status'
+
+    Status:
+      type: object
+      properties:
+        status_id:
+          type: integer
+          example: 1
+        descricao:
+          type: string
+          example: "Disponível"
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Erro ao processar a requisição"
