@@ -18,6 +18,8 @@ class ClienteController {
         this.router.get('/findAll', this.findAll.bind(this));
         this.router.get('/findByEmail/:email', this.findByEmail.bind(this));
         this.router.post('/login', this.login.bind(this));
+        this.router.post('/passwordRecovery', this.requirePasswordRecoveryLink.bind(this));
+        this.router.post('/passwordReset', this.passwordReset.bind(this));
     }
 
     async save(req, res) {
@@ -90,6 +92,28 @@ class ClienteController {
             res.status(500).json({ error: error.message });
         }
     }
+
+    async requirePasswordRecoveryLink(req, res) {
+        try {
+            const { email } = req.body;
+            const response = await this.clienteService.requirePasswordRecoveryLink(email);
+            res.status(200).json(response);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
+
+    async passwordReset(req, res) {
+        try {
+            const { token, newPassword } = req.body;
+            const response = await this.clienteService.passwordReset(token, newPassword);
+            res.status(200).json(response);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
+
+
 }
 
 module.exports = ClienteController;

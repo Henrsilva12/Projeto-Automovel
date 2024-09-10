@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const EmailService = require('./emailService');
+require('dotenv').config();
 
 class ClienteService {
     
@@ -66,7 +68,7 @@ class ClienteService {
 
         const token = jwt.sign(
             { email: loginData.email },
-            'your-secret-key',
+            process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
 
@@ -74,6 +76,85 @@ class ClienteService {
 
         return { cliente, token };
     }
+
+
+    async requirePasswordRecoveryLink(email) {
+        
+
+        if (!email) {
+            throw new Error('Email não informado');
+        }
+
+        const cliente = await this.clienteRepository.findByEmail(email);
+        if (!cliente) {
+            throw new Error('Cliente não encontrado');
+        }
+        
+        const token = jwt.sign(
+            { email: cliente.email },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        const link = `${process.env.FRONT_END_URL}/recover_password?token=${token}`;
+        const response = EmailService.sendEmail({
+            reciever: email,
+            subject: 'Recuperação de senha',
+            text: `            
+            <h1>Recuperação de senha</h1>
+            <p>Clique no link abaixo para recuperar sua senha</p>
+            <a href="${link}" style: width: 100px; height: 50px; background-color: blue; color: white;>Recuperar senha</a>
+            `
+        });
+
+        return { response };
+    }
+
+    async passwordReset( token, newPassword) {
+        
+
+        if (!token) {
+            throw new Error('Token não informado');
+        }
+
+        if (!newPassword) {
+            throw new Error('Nova senha não informada');
+        }
+
+        let email = '';
+
+        await this.validateToken(token) ? email = this.validateToken(token).decoded.email : null;
+
+        if (!email || email === '' || email === undefined || email === null) {
+            throw new Error('Email não encontrado no token');
+        }
+
+        const cliente = await this.clienteRepository.findByEmail(email);
+        if (!cliente) {
+            throw new Error('Cliente não encontrado');
+        }
+
+        const response = await this.update(
+            { cliente_id: cliente.cliente_id },
+            { senha: newPassword },
+            {}
+        );
+
+        return { 
+            response
+         };
+    }
+
+    async validateToken(token) {
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            return { isValid: true, decoded };
+        }
+        catch (error) {
+            return { isValid: false, error };
+        }
+    }
+
 }
 
 module.exports = ClienteService;
