@@ -7,7 +7,7 @@ import NovaSenha from './Pages/NovaSenha/Index'
 import Cadastro from './Pages/Cadastro/Index'
 import Cadastro2 from './Pages/Cadastro2/Index'
 import Cadastro3 from './Pages/Cadastro3/Index'
-//import Ajuda from './Pages/Ajuda/Index'
+import Reservas from './Pages/Reservas/Index'
 
 
 const router = createBrowserRouter([
@@ -51,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: '/register3',
     element: <Cadastro3/>
+  },
+  {
+    path: '/reservar',
+    element: <Reservas/>
   }
 
 ]);

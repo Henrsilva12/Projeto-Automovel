@@ -1,3 +1,8 @@
+body {
+  background: #fff;
+  min-height: 100vh;
+  width: 100vw;
+}
 .page-container {
   position: relative; /* Faz com que os filhos usem a posição relativa para sobrepor o fundo */
   min-height: 100vh; /* Garante que o contêiner ocupe pelo menos a altura total da tela */

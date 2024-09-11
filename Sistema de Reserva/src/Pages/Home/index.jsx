@@ -1,9 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
 import './Style.css'
 import telaHome from '../../assets/imagens/telaHome.png'
 import logoFiat from '../../assets/imagens/logoFiat.png'
-import { Link } from 'react-router-dom'
 
 
 function Home() {
@@ -19,14 +17,13 @@ function Home() {
 
       <div className="navigation">
         <a href="/home">Home</a>
-        <a href="/reservas">Minhas reservas</a>
+        <a href="/reservar">Minhas reservas</a>
 
       <div className="dropdown">
         <button className="dropbtn">Perfil</button>
 
       <div className="dropdown-content">
-          <a href="/ajuda">Ajuda</a>
-          <a href="/sair">Sair</a>
+          <a href="/Login">Sair</a>
         </div>
       </div>
     </div>

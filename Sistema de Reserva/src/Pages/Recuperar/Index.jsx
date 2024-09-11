@@ -24,7 +24,7 @@ const RecoverPassword = () => {
               </div>
                 <div className='container-Recup'>
                     <label>Recuperar Senha</label>
-                    <p>Insira um email válido!</p>
+                    <p2>Insira um email válido!</p2>
                 </div>
 
                 <div className='Campo-email'>

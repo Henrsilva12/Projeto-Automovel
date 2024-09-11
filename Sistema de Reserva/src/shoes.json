@@ -1,0 +1,40 @@
+[
+  {
+    "id": "94313731",
+    "name": "Titano" ,
+    "price": 100.00,
+    "image": "https://conteudo.imguol.com.br/c/parceiros/e1/2024/02/06/titano-chega-nas-proximas-semanas-para-marcar-definitivamente-a-entrada-da-fiat-no-segmento-de-picapes-medias-1707251624524_v2_4x3.jpg"
+  },
+  {
+    "id": "94313762",
+    "name": "500e",
+    "price": 150.00,
+    "image": "https://500e.fiat.com.br/content/dam/fiat/products/332/312/0/2022/page/hero.png"
+  },
+  
+  { 
+    "id": "943137XQ",
+    "name": "Mobi",
+    "price": 120.00,
+    "image": "https://production.autoforce.com/uploads/version/profile_image/9614/comprar-like-1-0_182823d236.png"
+  },
+  {
+    "id": "95077714",
+    "name": "Argo",
+    "price": 110.00,
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhSbXEedrtcPLiUuwfIQtdYZS5cHcpiJ7p3DBkyfRZ-iA7fW5GPcq2l4m70FYm0tHwiizYLeU1A9lVSxLQsYKOM7fXfB_h18-by5bPffNgb-syimHeQni6-cyxmxUzfbSeeGy9cqR0gN45ngPR0xLAvku0kBxCVuE-J3nK6-bJqp7i3C0eltN7hul_r/s1065/Lanzamiento:%20Fiat%20Argo%20Drive%20y%20Trekking%20MY2023%20Precios%200km%202022%202023%20Autoblog%20Uruguay4.jpg"
+  },
+  {
+    "id": "9507779N",
+    "name": "Cronos",
+    "price": 270.00,
+    "image": "https://production.autoforce.com/uploads/version/profile_image/11156/comprar-drive-1-0_4067aa161a.png"
+  },
+  {
+    "id": "92601102",
+    "name": "Pulse",
+    "price": 350.00,
+    "image": "https://pulse.fiat.com.br/content/dam/fiat/products/363/azl/0/2025/page/hero.webp"
+  }
+  
+]
