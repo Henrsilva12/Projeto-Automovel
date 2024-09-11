@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const EmailService = require('./emailService');
+const EmailService = require('./emailServices');
 require('dotenv').config();
 
 class ClienteService {
