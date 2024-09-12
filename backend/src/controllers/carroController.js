@@ -18,6 +18,7 @@ class CarroController {
         this.router.post('/criar', this.save.bind(this));
         this.router.put('/atualizar', this.update.bind(this));
         this.router.delete('/deletar/:id', this.delete.bind(this));
+        this.router.get('/pegarDisponiveis', this.findAllAvailable.bind(this));
     }
 
     async findAll(req, res) {
@@ -64,6 +65,15 @@ class CarroController {
             const { id } = req.params;
             await this.carroServices.delete(id);
             res.status(204).end();
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+
+    async findAllAvailable(req, res) {
+        try {
+            const carros = await this.carroServices.findAllAvailable();
+            res.status(200).json(carros);
         } catch (error) {
             res.status(500).json({ message: error.message });
         }

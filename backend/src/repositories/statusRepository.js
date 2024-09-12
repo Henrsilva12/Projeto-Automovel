@@ -88,7 +88,27 @@ class StatusRepository {
         await queryRunner.startTransaction();
 
         try {
-            const status = await queryRunner.manager.find(Status);
+            const status = await queryRunner.query('SELECT * FROM status');
+
+            await queryRunner.commitTransaction();
+
+            return status;
+        } catch (error) {
+            await queryRunner.rollbackTransaction();
+            throw error;
+        } finally {
+            await queryRunner.release();
+        }
+    }
+
+    async findAll() {
+        const queryRunner = AppDataSource.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+
+        try {
+            const status = await queryRunner.query('SELECT * FROM status');
 
             await queryRunner.commitTransaction();
 

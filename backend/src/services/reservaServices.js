@@ -40,10 +40,9 @@ class ReservaServices {
 
         const newReserva = await this.reservaRepository.makeReservation(reservaData.reservaData);
 
-        const status = await this.statusRepository.findAll();
-        const idStatusReservado = status.find(status => status.nome === 'Reservado').status_id;
+        carroFromDb.status_id = 1;
 
-        await this.carroRepository.update({ ...carroFromDb, status: idStatusReservado });
+        await this.carroRepository.update( carroFromDb );
 
 
         return newReserva;

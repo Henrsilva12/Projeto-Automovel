@@ -11,7 +11,7 @@ function Reservas() {
   const carousel = useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/carro/pegarTodos")
+    fetch("http://localhost:3000/api/carro/pegarDisponiveis")
       .then((response) => response.json())
       .then(setData);
   }, []);
@@ -24,6 +24,10 @@ function Reservas() {
   const handleRightClick = (e) => {
     e.preventDefault();
     carousel.current.scrollLeft += carousel.current.offsetWidth;
+  };
+
+  const recarregarPagina = () => {
+    window.location.reload();
   };
 
   const getClienteIdFromLocalStorage = () => {
@@ -66,8 +70,10 @@ function Reservas() {
         },
       }),
     }).then((response) => {
-      if (response.ok) {
+      if (response.status === 200 || response.status === 201) {
         alert("Reserva efetuada com sucesso");
+
+        recarregarPagina();
       } else {
         alert("Erro ao efetuar reserva");
       }

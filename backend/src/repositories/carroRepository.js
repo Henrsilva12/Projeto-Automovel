@@ -84,6 +84,15 @@ class CarroRepository {
         return carros;
     }
 
+    async findAllAvailable() {
+        const queryRunner = AppDataSource.createQueryRunner();
+
+        await queryRunner.connect();
+        const carros = await queryRunner.query('SELECT * FROM carro WHERE status_id != 1');
+
+        return carros;
+    }
+
     async findByLoja(loja) {
         const carros = await AppDataSource.getManager().find(Carro, { where: { loja: loja } });
         return carros;

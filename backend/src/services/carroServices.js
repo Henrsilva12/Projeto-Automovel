@@ -29,6 +29,11 @@ class CarroServices {
         return carros;
     }
 
+    async findAllAvailable() {
+        const carros = await this.carroRepository.findAllAvailable();
+        return carros;
+    }
+    
     async findByModelo(modelo) {
         const carro = await this.carroRepository.findByModelo(modelo);
         return carro;
