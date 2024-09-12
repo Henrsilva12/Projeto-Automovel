@@ -101,9 +101,13 @@ class ClienteRepository {
     }
 
     async findById(id) {
-        const cliente = await AppDataSource.getRepository(Cliente).findOne({
-            where: { cliente_id: id }
-        });
+        const queryRunner = AppDataSource.createQueryRunner();
+
+        await queryRunner.connect();
+        const cliente = await queryRunner.query(`
+            SELECT * FROM carro
+            WHERE carro_id = ${id}`
+        );
         return cliente;
     }
 

@@ -20,6 +20,10 @@ function Login() {
     localStorage.setItem('token', token);
   }
 
+  const guardarClienteId = (clienteId) => {
+    localStorage.setItem('cliente_id', clienteId);
+  }
+
   const fazerLogin = async (e) => {
     e.preventDefault(); // Prevenir o comportamento padrão de submit
      
@@ -38,6 +42,10 @@ function Login() {
         window.location.href = '/home';
       }
       
+      if(response.data.cliente.cliente_id){
+        guardarClienteId(response.data.cliente.cliente_id);
+      }
+
       console.log(response.data);
     } catch (error) {
       alert('Erro ao efetuar login');

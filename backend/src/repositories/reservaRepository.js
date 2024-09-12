@@ -8,6 +8,16 @@ const Loja = require('../entity/Loja');
 class ReservaRepository {
 
     async makeReservation(reservaData) {
+
+        const carro_id = reservaData.carro_id;
+        const cliente_id = reservaData.cliente_id;
+        const retirada = reservaData.retirada;
+        const devolucao = reservaData.devolucao;
+        const impostos = reservaData.impostos;
+        const custo = reservaData.custo;
+
+        console.log("vou fazer a query");
+        console.log(devolucao);
         const queryRunner = AppDataSource.createQueryRunner();
 
         await queryRunner.connect();
@@ -15,7 +25,12 @@ class ReservaRepository {
 
         try {
 
-            const reserva = await queryRunner.manager.save(Reserva, reservaData);
+            const reserva = await queryRunner.query(
+                `INSERT INTO reserva (carro_id, cliente_id, retirada, devolucao, impostos, custo)
+                 VALUES ($1, $2, $3, $4, $5, $6)
+                 RETURNING *`,
+                [carro_id, cliente_id, retirada, devolucao, impostos, custo]
+            );
 
             await queryRunner.commitTransaction();
 
@@ -35,7 +50,7 @@ class ReservaRepository {
         await queryRunner.startTransaction();
 
         try {
-            
+
             const carro = await queryRunner.manager.findOne(Carro, carro_id);
 
             if (!carro) {
@@ -49,12 +64,12 @@ class ReservaRepository {
             });
 
             for (let i = 0; i < reservas.length; i++) {
-                
+
                 if (reservas[i].data_inicio <= data_inicio && reservas[i].data_fim >= data_fim) {
                     await queryRunner.commitTransaction();
                     return false;
                 }
-            
+
             }
 
             await queryRunner.commitTransaction();
@@ -84,13 +99,16 @@ class ReservaRepository {
         }
     }
 
-    async findReservasByCliente(cliente) {
+    async findReservasByCliente(cliente_id) {
         const queryRunner = AppDataSource.createQueryRunner();
 
         await queryRunner.connect();
 
         try {
-            const reservas = await queryRunner.manager.find(Reserva, { where: { cliente: cliente } });
+            const reservas = await queryRunner.query(
+                `SELECT * FROM reserva WHERE cliente_id = $1`,
+                [cliente_id]
+            );
 
             return reservas;
         } catch (error) {
