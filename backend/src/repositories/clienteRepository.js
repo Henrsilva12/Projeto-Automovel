@@ -117,10 +117,17 @@ class ClienteRepository {
     }
 
     async findByEmail(email) {
-        const login = await AppDataSource.getRepository(Login).findOne({
-            where: { email: email },
-        });
-        return login ? login : null;
+        const queryRunner = AppDataSource.createQueryRunner();
+
+        await queryRunner.connect();
+        const cliente = await queryRunner.query(`
+            SELECT * FROM login
+            inner join cliente on login.cliente_id = cliente.cliente_id
+            WHERE email = '${email}'`
+        );
+
+        console.log(cliente);
+        return cliente;
     }
 }
 
