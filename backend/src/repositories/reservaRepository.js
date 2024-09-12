@@ -105,8 +105,14 @@ class ReservaRepository {
         await queryRunner.connect();
 
         try {
+
+            //preciso de um join com a tabela carro para trazer todos os carros que o cliente tem reservado
             const reservas = await queryRunner.query(
-                `SELECT * FROM reserva WHERE cliente_id = $1`,
+                `SELECT * FROM reserva
+                inner join carro on reserva.carro_id = carro.carro_id 
+                WHERE cliente_id = $1
+                 `,
+
                 [cliente_id]
             );
 

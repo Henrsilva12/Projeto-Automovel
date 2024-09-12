@@ -48,13 +48,13 @@ class ReservaServices {
         return newReserva;
     }
 
-    async findReservasByCliente(cliente) {
+    async findReservasByCliente(cliente_id) {
 
-        if (!cliente) {
+        if (!cliente_id) {
             throw new Error('Cliente não informado');
         }
 
-        const reservas = await this.reservaRepository.findReservasByCliente(cliente);
+        const reservas = await this.reservaRepository.findReservasByCliente(cliente_id);
         return reservas;
     }
 

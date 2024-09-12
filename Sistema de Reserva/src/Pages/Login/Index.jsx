@@ -28,7 +28,7 @@ function Login() {
     e.preventDefault(); // Prevenir o comportamento padrão de submit
      
     try {
-      const response = await axios.post('http://localhost:3000/api/cliente/login', {
+      const response = await axios.post('https://projeto-automovel.onrender.com/api/cliente/login', {
         email: email,
         senha: password // Certifique-se de que o backend espera "password"
       });

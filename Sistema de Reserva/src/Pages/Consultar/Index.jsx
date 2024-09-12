@@ -1,19 +1,43 @@
-import React from 'react'
-import { useState } from 'react'
-import './Style.css'
-import logoFiat from '../../assets/imagens/logoFiat.png'
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Style.css';
+import logoFiat from '../../assets/imagens/logoFiat.png';
 
 function Consultar() {
+  const [carro, setCarro] = useState({
+    carro_id: '',
+    placa: '',
+    modelo: '',
+    url_foto: '',
+    preco_aluguel_dia: '',
+    ano: '',
+    marca: ''
+  });
 
-  const [cod, setCod] = useState('')
-  const [placa, setPlaca] = useState('')
-  const [modelo, setModelo] = useState('')
-  const [marca, setMarca] = useState('')
-  const [ano, setAno] = useState('')
+  const cliente_id = localStorage.getItem('cliente_id');
+
+  if(!cliente_id) {
+    alert('Você precisa estar logado para conseguir consultar um carro. Vou te redirecionar para a página de login.');
+    window.location.href = '/login';
+  }
+
+  useEffect(() => {
+    const fetchCarro = async () => {
+      try {
+        // Supondo que você tenha um endpoint que retorna um carro específico
+        //o endpoint é http://localhost:3000/api/carro/pegarCarro/:id
+        const response = await axios.get(`https://projeto-automovel.onrender.com/api/reserva/findReservasByCliente/${cliente_id}`);
+
+        setCarro(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar dados do carro:', error);
+      }
+    };
+
+    fetchCarro();
+  }, []);
 
   return (
-
     <div className='page-container2'>
       <div className='header'>
         <div className="logo">
@@ -31,7 +55,6 @@ function Consultar() {
               <a href="/Ajuda">Ajuda</a>
               <a href="/Login">Sair</a>
             </div>
-
           </div>
         </div>
       </div>
@@ -42,22 +65,23 @@ function Consultar() {
 
         <div className='forms-cons'>
           <label>Código do carro</label>
-          <input className='input-name' name='cod' type='text4' value={cod} onChange={(v6) => setCod(v6.target.value)} />
+          <input className='input-name' name='cod' type='text' value={carro.carro_id} readOnly />
           <label>Placa</label>
-          <input className='input-name' name='placa' type='text4' value={placa} onChange={(v7) => setPlaca(v7.target.value)} />
+          <input className='input-name' name='placa' type='text' value={carro.placa} readOnly />
           <label>Modelo</label>
-          <input className='input-name' name='modelo' type='text4' value={modelo} onChange={(v8) => setModelo(v8.target.value)} />
+          <input className='input-name' name='modelo' type='text' value={carro.modelo} readOnly />
           <label>Marca</label>
-          <input className='input-name' name='marca' type='text4' value={marca} onChange={(v9) => setMarca(v9.target.value)} />
+          <input className='input-name' name='marca' type='text' value={carro.marca} readOnly />
           <label>Ano</label>
-          <input className='input-number' name='ano' type='numero4' value={ano} onChange={(v10) => setAno(v10.target.value)} />
+          <input className='input-number' name='ano' type='number' value={carro.ano} readOnly />
+          <label>Preço por Dia</label>
+          <input className='input-number' name='preco' type='text' value={`R$ ${carro.preco_aluguel_dia}`} readOnly />
+          <label>Foto</label>
+          {carro.url_foto && <img src={carro.url_foto} alt='Carro' style={{ width: '200px', height: 'auto' }} />}
         </div>
       </div>
-
     </div>
-
   );
 }
 
-
-export default Consultar
+export default Consultar;

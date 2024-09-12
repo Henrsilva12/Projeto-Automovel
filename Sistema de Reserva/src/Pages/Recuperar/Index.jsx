@@ -8,7 +8,7 @@ import axios from "axios";
 
 const RecoverPassword = () => {
   const [email, setEmail] = useState("");
-  const apiurl = "http://localhost:3000/api/cliente/passwordRecovery";
+  const apiurl = "https://projeto-automovel.onrender.com/api/cliente/passwordRecovery";
 
   const sendEmail = async (e) => {
     e.preventDefault();

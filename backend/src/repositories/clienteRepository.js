@@ -105,8 +105,8 @@ class ClienteRepository {
 
         await queryRunner.connect();
         const cliente = await queryRunner.query(`
-            SELECT * FROM carro
-            WHERE carro_id = ${id}`
+            SELECT * FROM cliente
+            WHERE cliente_id = ${id}`
         );
         return cliente;
     }

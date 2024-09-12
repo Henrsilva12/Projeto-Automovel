@@ -35,8 +35,8 @@ class ReservaController {
 
     async findReservasByCliente(req, res) {
         try {
-            const { cliente } = req.params;
-            const reservas = await this.reservaServices.findReservasByCliente(cliente);
+            const { cliente_id } = req.body;
+            const reservas = await this.reservaServices.findReservasByCliente(cliente_id);
             res.status(200).json(reservas);
         } catch (error) {
             res.status(500).json({ error: error.message });

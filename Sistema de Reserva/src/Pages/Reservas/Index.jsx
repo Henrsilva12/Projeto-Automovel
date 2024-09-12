@@ -11,7 +11,7 @@ function Reservas() {
   const carousel = useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/carro/pegarDisponiveis")
+    fetch("https://projeto-automovel.onrender.com/api/carro/pegarDisponiveis")
       .then((response) => response.json())
       .then(setData);
   }, []);
