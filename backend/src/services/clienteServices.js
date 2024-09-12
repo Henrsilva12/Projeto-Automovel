@@ -72,7 +72,7 @@ class ClienteService {
             { expiresIn: '1h' }
         );
 
-        const cliente = await this.clienteRepository.findById(loginData.cliente_id);
+        const cliente = await this.clienteRepository.findById(login.cliente_id);
 
         return { cliente, token };
     }

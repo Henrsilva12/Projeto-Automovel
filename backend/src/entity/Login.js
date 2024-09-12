@@ -11,9 +11,6 @@ const LoginSchema = new EntitySchema({
       primary: true,
       generated: true
     },
-    cliente_id: {
-      type: 'int'
-    },
     email: {
       type: 'varchar'
     },
