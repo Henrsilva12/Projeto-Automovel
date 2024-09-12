@@ -1,8 +1,10 @@
+
 import React from "react";
 import { useEffect, useState, useRef } from "react";
 import "./Style.css";
 import logoFiat from "../../assets/imagens/logoFiat.png";
 import { Link } from "react-router-dom";
+
 
 function Reservas() {
   const [data, setData] = useState([]);
@@ -91,6 +93,7 @@ function Reservas() {
               <a href="/reservar">Minhas reservas</a>
               <div className="dropdown">
                 <button className="dropbtn">Perfil</button>
+
                 <div className="dropdown-content">
                   <a href="/Login">Sair</a>
                 </div>

@@ -18,7 +18,7 @@ input[type="text2"], input[type="email2"], input[type="tel"], input[type="number
   border: none; /* Remove todas as bordas */
   border-bottom: 1px solid black; /* Adiciona uma linha na parte inferior */
   outline: none; /* Remove o contorno ao focar */
-  padding: 8px 0; /* Espaçamento interno para que o texto não fique muito colado na borda */
+  padding: 0; /* Espaçamento interno para que o texto não fique muito colado na borda */
   width: 100%; /* Faz o input ocupar a largura total do container */
   margin-bottom: 10px;
 }
