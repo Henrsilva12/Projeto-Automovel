@@ -12,12 +12,6 @@ const CarroSchema = new EntitySchema({
       primary: true,
       generated: true
     },
-    status_id: {
-      type: 'int'
-    },
-    loja_id: {
-      type: 'int'
-    },
     placa: {
       type: 'varchar'
     },
@@ -41,13 +35,13 @@ const CarroSchema = new EntitySchema({
     status: {
       target: 'Status',
       type: 'many-to-one',
-      joinColumn: true,
+      joinColumn: { name: 'status_id' },
       inverseSide: 'carros'
     },
     loja: {
       target: 'Loja',
       type: 'many-to-one',
-      joinColumn: true,
+      joinColumn: { name: 'loja_id' },
       inverseSide: 'carros'
     }
   }

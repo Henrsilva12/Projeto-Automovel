@@ -1,40 +1,112 @@
 [
   {
-    "id": "94313731",
-    "name": "Titano" ,
-    "price": 100.00,
-    "image": "https://conteudo.imguol.com.br/c/parceiros/e1/2024/02/06/titano-chega-nas-proximas-semanas-para-marcar-definitivamente-a-entrada-da-fiat-no-segmento-de-picapes-medias-1707251624524_v2_4x3.jpg"
+    "carro_id": 1,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "120.00",
+    "ano": 2021,
+    "placa": "ABC1234",
+    "modelo": "Fiat Argo",
+    "url_foto": "https://argo.fiat.com.br/content/dam/fiat/products/358/acg/1/2025/page/hero.webp",
+    "marca": "Fiat"
   },
   {
-    "id": "94313762",
-    "name": "500e",
-    "price": 150.00,
-    "image": "https://500e.fiat.com.br/content/dam/fiat/products/332/312/0/2022/page/hero.png"
-  },
-  
-  { 
-    "id": "943137XQ",
-    "name": "Mobi",
-    "price": 120.00,
-    "image": "https://production.autoforce.com/uploads/version/profile_image/9614/comprar-like-1-0_182823d236.png"
+    "carro_id": 2,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "150.00",
+    "ano": 2020,
+    "placa": "DEF5678",
+    "modelo": "Fiat Toro",
+    "url_foto": "https://toro.fiat.com.br/content/dam/fiat/products/226/1pe/1/2025/page/hero.webp",
+    "marca": "Fiat"
   },
   {
-    "id": "95077714",
-    "name": "Argo",
-    "price": 110.00,
-    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhSbXEedrtcPLiUuwfIQtdYZS5cHcpiJ7p3DBkyfRZ-iA7fW5GPcq2l4m70FYm0tHwiizYLeU1A9lVSxLQsYKOM7fXfB_h18-by5bPffNgb-syimHeQni6-cyxmxUzfbSeeGy9cqR0gN45ngPR0xLAvku0kBxCVuE-J3nK6-bJqp7i3C0eltN7hul_r/s1065/Lanzamiento:%20Fiat%20Argo%20Drive%20y%20Trekking%20MY2023%20Precios%200km%202022%202023%20Autoblog%20Uruguay4.jpg"
+    "carro_id": 3,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "110.00",
+    "ano": 2019,
+    "placa": "GHI9101",
+    "modelo": "Fiat Uno",
+    "url_foto": "https://cdn.motor1.com/images/mgl/QwBk0/s1/fiat-uno-drive-2018.webp",
+    "marca": "Fiat"
   },
   {
-    "id": "9507779N",
-    "name": "Cronos",
-    "price": 270.00,
-    "image": "https://production.autoforce.com/uploads/version/profile_image/11156/comprar-drive-1-0_4067aa161a.png"
+    "carro_id": 4,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "140.00",
+    "ano": 2022,
+    "placa": "JKL1213",
+    "modelo": "Fiat Strada",
+    "url_foto": "https://www.comprerural.com/wp-content/uploads/2020/04/strada-2021-9-e1586200457765-1.jpg",
+    "marca": "Fiat"
   },
   {
-    "id": "92601102",
-    "name": "Pulse",
-    "price": 350.00,
-    "image": "https://pulse.fiat.com.br/content/dam/fiat/products/363/azl/0/2025/page/hero.webp"
+    "carro_id": 5,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "130.00",
+    "ano": 2021,
+    "placa": "MNO1415",
+    "modelo": "Fiat Mobi",
+    "url_foto": "https://fotos-jornaldocarro-estadao.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2021/05/19165847/Mobi_Trekking_0008-large.jpeg",
+    "marca": "Fiat"
+  },
+  {
+    "carro_id": 6,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "160.00",
+    "ano": 2020,
+    "placa": "PQR1617",
+    "modelo": "Fiat Cronos",
+    "url_foto": "https://motorshow.com.br/wp-content/uploads/sites/2/2020/11/cronosprecision18at66-large.jpg",
+    "marca": "Fiat"
+  },
+  {
+    "carro_id": 7,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "145.00",
+    "ano": 2019,
+    "placa": "STU1819",
+    "modelo": "Fiat Fiorino",
+    "url_foto": "https://valedoparaopeba.com.br/wp-content/uploads/2021/12/NOVA-FIORINO-VEICULOS.jpg",
+    "marca": "Fiat"
+  },
+  {
+    "carro_id": 8,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "125.00",
+    "ano": 2021,
+    "placa": "VWX2021",
+    "modelo": "Fiat Siena",
+    "url_foto": "https://g1.globo.com/Noticias/Carros/foto/0,,21268805-EX,00.jpg",
+    "marca": "Fiat"
+  },
+  {
+    "carro_id": 9,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "135.00",
+    "ano": 2020,
+    "placa": "YZA2223",
+    "modelo": "Fiat Palio",
+    "url_foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUJEUrVXkAvzAkl_OYU6D4E8i-K6C8Eo4EYg&s",
+    "marca": "Fiat"
+  },
+  {
+    "carro_id": 10,
+    "status_id": 1,
+    "loja_id": 1,
+    "preco_aluguel_dia": "155.00",
+    "ano": 2022,
+    "placa": "BCD2425",
+    "modelo": "Fiat Ducato",
+    "url_foto": "https://ducato.fiat.com.br/content/dam/fiat/ducato/Novo-fiat-ducato-cargo-versoes.webp",
+    "marca": "Fiat"
   }
-  
 ]

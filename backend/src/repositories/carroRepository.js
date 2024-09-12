@@ -69,7 +69,11 @@ class CarroRepository {
     }
 
     async findAll() {
-        const carros = await AppDataSource.getManager().find(Carro);
+        const queryRunner = AppDataSource.createQueryRunner();
+
+        await queryRunner.connect();
+        const carros = await queryRunner.query('SELECT * FROM carro');
+        console.log(carros);
         return carros;
     }
 
