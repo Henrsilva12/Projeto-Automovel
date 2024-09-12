@@ -59,20 +59,32 @@ class ClienteService {
             throw new Error('Cliente não encontrado');
         }
 
-        const loginData = {... login};
+        const loginData = login.login;
 
-        const isMatch = await bcrypt.compare(senha, loginData.senha);
+        console.log("Vou imprimir os dados");
+        
+        let senhaHash = '';
+        let emailHash = '';
+        let cliente_id = '';
+        login.map((item) => {
+            senhaHash = item.senha;
+            emailHash = item.email;
+            cliente_id = item.cliente_id;
+        });
+
+        console.log(senhaHash);
+        const isMatch = await bcrypt.compare(senha, senhaHash);
         if (!isMatch) {
             throw new Error('Senha inválida');
         }
 
         const token = jwt.sign(
-            { email: loginData.email },
+            { email: emailHash },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
 
-        const cliente = await this.clienteRepository.findById(login.cliente_id);
+        const cliente = await this.clienteRepository.findById(cliente_id);
 
         return { cliente, token };
     }

@@ -42,8 +42,8 @@ function Login() {
         window.location.href = '/home';
       }
       
-      if(response.data.cliente.cliente_id){
-        guardarClienteId(response.data.cliente.cliente_id);
+      if (response.data.cliente && response.data.cliente.length > 0) {
+        guardarClienteId(response.data.cliente[0].cliente_id);
       }
 
 
