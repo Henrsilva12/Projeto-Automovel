@@ -66,7 +66,7 @@ function Reservas() {
     const totalDias = Math.ceil(diferenca / (1000 * 3600 * 24));
     const precoTotal = carro.preco_aluguel_dia * totalDias;
 
-    await fetch("http://localhost:3000/api/reserva/makeReservation", {
+    await fetch("https://projeto-automovel.onrender.com/api/reserva/makeReservation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
