@@ -35,27 +35,6 @@ function Reservas() {
     }
   };
 
-  const verifyIfDataSelectedIsValid = () => {
-    //a data selecionada não pode ser menor que a data atual
-    const dataReserva = document.getElementById("data-reserva").value;
-    const dataFinal = document.getElementById("data-final").value;
-
-    const dataAtual = new Date();
-    const dataReservaDate = new Date(dataReserva);
-
-    if (dataReservaDate < dataAtual) {
-      alert("A data de retirada não pode ser menor que a data atual.");
-      return false;
-    }
-
-    if (dataReservaDate > dataFinal) {
-      alert("A data de devolução não pode ser menor que a data de retirada.");
-      return false;
-    }
-
-    return true;
-  }
-
   const recarregarPagina = () => {
     window.location.reload();
   };
@@ -68,17 +47,13 @@ function Reservas() {
 
     verifyIfUserIsLoggedIn();
     
-    if (!verifyIfDataSelectedIsValid()) {
-      return;
-    }
-    
     const dataReserva = document.getElementById("data-reserva").value;
     const horarioReserva = document.getElementById("horario-reserva").value;
     const dataFinal = document.getElementById("data-final").value;
     const horarioFinal = document.getElementById("horario-final").value;
 
-    if (!dataReserva || !horarioReserva || !dataFinal || !horarioFinal) {
-      alert("Por favor, preencha todas as datas e horários.");
+    if (!dataReserva || !dataFinal) {
+      alert("Por favor, preencha todas as datas.");
       return;
     }
 
