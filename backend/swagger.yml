@@ -9,7 +9,7 @@ servers:
     description: Servidor local
 
 paths:
-  /cliente:
+  /cliente/save:
     post:
       summary: Cria um novo cliente
       requestBody:

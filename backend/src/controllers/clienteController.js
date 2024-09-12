@@ -83,6 +83,8 @@ class ClienteController {
 
     async login(req, res) {
         try {
+
+            console.log(req.body);
             const { email, senha } = req.body;
 
             const { cliente, token } = await this.clienteService.login(email, senha);

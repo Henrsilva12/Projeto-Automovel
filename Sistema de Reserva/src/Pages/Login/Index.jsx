@@ -6,6 +6,7 @@ import logoFiat from '../../assets/imagens/logoFiat.png'
 import nomeLogo from '../../assets/imagens/nomeLogo.png'
 import CarroLogin from '../../assets/imagens/CarroLogin.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 function Login() {
 
@@ -13,7 +14,36 @@ function Login() {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [viewPassword,setViewPassword] = useState(false)
+  //const backendUrl = import.meta.env.BACKEND_URL || 'http://localhost:3000';
 
+  const guardarToken = (token) => {
+    localStorage.setItem('token', token);
+  }
+
+  const fazerLogin = async (e) => {
+    e.preventDefault(); // Prevenir o comportamento padrão de submit
+     
+    try {
+      const response = await axios.post('http://localhost:3000/api/cliente/login', {
+        email: email,
+        senha: password // Certifique-se de que o backend espera "password"
+      });
+      
+
+      if(response.data.token){
+        guardarToken(response.data.token);
+        alert('Login efetuado com sucesso');
+
+        // Redirecionar para a página de home
+        window.location.href = '/home';
+      }
+      
+      console.log(response.data);
+    } catch (error) {
+      alert('Erro ao efetuar login');
+      console.log(error);
+    }
+  }
 
   const HandleViewPassword = () => {
     setViewPassword(!viewPassword)
@@ -31,7 +61,7 @@ function Login() {
             </div>
           </div>
 
-            <form>
+            <form onSubmit={fazerLogin}>
               <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> 
                 <img src={logoFiat} alt='Logo' style={{ width: '80px', height: 'auto'}} />
                 <img src={nomeLogo} alt='nomeLogo' style={{ width: '80px', height: 'auto'}} />
@@ -71,9 +101,10 @@ function Login() {
 
               
                 <div style={{ padding: '5px 10px', fontSize: '18px', textAlign: 'center' }}>
-                    <Link to={'/home'}>
-                     <button>Entrar</button>
-                    </Link>
+
+                     <button
+                     type='submit'
+                     >Entrar</button>
                   <div className='divider'>
                     <label>OU</label>
                 </div>
