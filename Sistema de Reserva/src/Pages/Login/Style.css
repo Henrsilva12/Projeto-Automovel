@@ -40,15 +40,15 @@
   border-bottom: 2px solid rgb(0, 0, 0); /*Linha da senha*/
 }
 /*Titulo: Login*/
-h1 {
-  height: 35px;
+hl {
+  height: 5px;
   color: #000;
-  font-size: 15px;
+  font-size: 40px;
   font-style: normal;
   font-weight: 800;
   text-align: center;
   word-wrap: break-word;
-  margin: 10px 0;
+  margin: 30px 0;
 }
 
 /*Insira seu email...*/

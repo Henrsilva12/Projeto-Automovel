@@ -1,0 +1,63 @@
+
+/* Estilos Gerais */
+.page-container2 {
+
+  max-width: 800px; /* Largura máxima do container */
+  margin: 0 auto; /* Centraliza o container na página */
+  padding: 20px;
+  background-color: #ffffff; /* Cor de fundo branca */
+  padding-top: 160px;
+
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  cursor: pointer; /* Cursor indica um elemento clicável */
+  font-size: 16px; /* Tamanho da fonte do botão */
+}
+
+/* Estilos dos Dados do Locatário */
+.dados {
+  font-size: 20px;
+  color: #000; /* Cor do texto cinza escuro */
+  border-bottom: 1px solid #ccc; /* Linha divisória sutil */
+  padding-bottom: 10px; /* Espaço abaixo do texto */
+  margin-bottom: 20px; /* Espaço antes do próximo bloco */
+}
+
+.dados h3 {
+  font-size: 18px; /* Tamanho da fonte para o título */
+  color: #333; /* Cor do texto cinza escuro */
+  margin-bottom: 10px; /* Espaço abaixo do título */
+}
+/* Container para rótulos de Locatário e E-mail */
+.dados-container {
+  display: flex; /* Usa flexbox para alinhar elementos horizontalmente */
+  justify-content: space-between; /* Espaça os elementos uniformemente */
+  margin-bottom: 30px; /* Espaço antes do próximo bloco */
+}
+
+.label-item {
+  display: flex; /* Permite a alinhamento dos itens internos */
+  flex-direction: column; /* Organiza os conteúdos verticalmente */
+}
+
+.label-item:not(:last-child) {
+  margin-right: 50px; /* Espaço entre os itens de rótulo */
+}
+
+.forms-cons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Duas colunas de igual largura */
+  gap: 20px; /* Espaço entre as colunas */
+  margin-bottom: 20px; /* Espaço antes do próximo bloco */
+  color: #000;
+}
+
+.input-name, .input-number {
+  width: 100%; /* Largura completa dentro da célula da grade */
+  padding: 8px; /* Espaçamento interno confortável para digitação */
+  border: 1px solid #d10000; /* Borda sutil */
+  border-radius: 4px; /* Cantos arredondados */
+}

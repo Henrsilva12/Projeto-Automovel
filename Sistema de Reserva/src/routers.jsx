@@ -8,6 +8,7 @@ import Cadastro from './Pages/Cadastro/Index'
 import Cadastro2 from './Pages/Cadastro2/Index'
 import Cadastro3 from './Pages/Cadastro3/Index'
 import Reservas from './Pages/Reservas/Index'
+import Consultar from './Pages/Consultar/Index'
 
 
 const router = createBrowserRouter([
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: '/reservar',
     element: <Reservas/>
+  },
+  {
+    path: '/consultar',
+    element: <Consultar/>
   }
 
 ]);
