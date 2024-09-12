@@ -14,7 +14,7 @@ const ReservaSchema = new EntitySchema({
       generated: true
     },
     devolucao: {
-      type: 'varchar'
+      type: 'date'
     },
     custo: {
       type: 'decimal'
@@ -23,28 +23,22 @@ const ReservaSchema = new EntitySchema({
       type: 'decimal'
     },
     retirada: {
-      type: 'varchar'
+      type: 'date'
     }
   },
   relations: {
     carro: {
       target: 'Carro',
       type: 'many-to-one',
-      joinColumn: true,
+      joinColumn: { name: 'carro_id' },
       inverseSide: 'reservas'
     },
     cliente: {
       target: 'Cliente',
       type: 'many-to-one',
-      joinColumn: true,
+      joinColumn: { name: 'cliente_id' },
       inverseSide: 'reservas'
     },
-    loja: {
-      target: 'Loja',
-      type: 'many-to-one',
-      joinColumn: true,
-      inverseSide: 'reservas'
-    }
   }
 });
 

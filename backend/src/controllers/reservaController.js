@@ -24,6 +24,8 @@ class ReservaController {
     async makeReservation(req, res) {
         try {
             const reservaData = req.body;
+
+            console.log(reservaData);
             const newReserva = await this.reservaServices.makeReservation(reservaData);
             res.status(200).json(newReserva);
         } catch (error) {

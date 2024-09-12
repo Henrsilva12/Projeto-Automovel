@@ -9,46 +9,49 @@ class ReservaServices {
 
     async makeReservation(reservaData) {
 
-        const { carro, cliente, data_inicio, data_fim } = reservaData;
+        const carro_id = reservaData.reservaData.carro_id;
+        const cliente_id = reservaData.reservaData.cliente_id;
+        const retirada = reservaData.reservaData.retirada;
+        const devolucao = reservaData.reservaData.devolucao;
+        const impostos = reservaData.reservaData.impostos;
+        const custo = reservaData.reservaData.custo;
 
-        if(!carro || !cliente || !data_inicio || !data_fim) {
+
+        if (carro_id ==null || cliente_id==null || !retirada || !devolucao || custo==null) {
             throw new Error('Dados insuficientes para fazer a reserva');
         }
 
-        const carroFromDb = await this.carroRepository.findById(carro.carro_id);
-        
-        if(!carroFromDb) {
+        const carroFromDb = await this.carroRepository.findById(carro_id);
+
+        if (!carroFromDb) {
             throw new Error('Carro não encontrado');
         }
 
-        const clienteFromDb = await this.clienteRepository.findById(cliente.cliente_id);
+        const clienteFromDb = await this.clienteRepository.findById(cliente_id);
 
-        if(!clienteFromDb) {
+        if (!clienteFromDb) {
             throw new Error('Cliente não encontrado');
         }
 
-        if( ! ( await this.reservaRepository.verifyCarAvailability(carro.carro_id, data_inicio, data_fim ) )) {
-            throw new Error('Carro não disponível para a data selecionada');
-        }
-
-        if(await this.findReservasByCliente(cliente).length > 0) {
+        console.log('vou fazer a query');
+        if (await this.findReservasByCliente(cliente_id).length > 0) {
             throw new Error('Cliente já possui uma reserva ativa');
         }
-        
-        const newReserva = await this.reservaRepository.makeReservation(reservaData);
+
+        const newReserva = await this.reservaRepository.makeReservation(reservaData.reservaData);
 
         const status = await this.statusRepository.findAll();
-        const idStatusReservado = status.find( status => status.nome === 'Reservado').status_id;
+        const idStatusReservado = status.find(status => status.nome === 'Reservado').status_id;
 
-        await this.carroRepository.update({ ... carroFromDb, status: idStatusReservado });
-        
+        await this.carroRepository.update({ ...carroFromDb, status: idStatusReservado });
+
 
         return newReserva;
     }
 
     async findReservasByCliente(cliente) {
 
-        if(!cliente) {
+        if (!cliente) {
             throw new Error('Cliente não informado');
         }
 

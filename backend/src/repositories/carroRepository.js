@@ -64,12 +64,23 @@ class CarroRepository {
     }
 
     async findById(id) {
-        const carro = await AppDataSource.getManager().findOne(Carro, id);
+        const queryRunner = AppDataSource.createQueryRunner();
+
+        await queryRunner.connect();
+        const carro = await queryRunner.query(`
+            SELECT * FROM carro
+            WHERE carro_id = ${id}`
+        );
+
         return carro;
     }
 
     async findAll() {
-        const carros = await AppDataSource.getManager().find(Carro);
+        const queryRunner = AppDataSource.createQueryRunner();
+
+        await queryRunner.connect();
+        const carros = await queryRunner.query('SELECT * FROM carro');
+
         return carros;
     }
 
