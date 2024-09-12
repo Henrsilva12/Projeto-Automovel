@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Login from './Pages/Login/Index'
 import Home from './Pages/Home/Index'
-import PrivateRoute from './PrivateRoute'
+//import PrivateRoute from './PrivateRoute'
 import RecoverPassword from './Pages/Recuperar/Index'
 import NovaSenha from './Pages/NovaSenha/Index'
 import Cadastro from './Pages/Cadastro/Index'
@@ -14,54 +14,54 @@ import Consultar from './Pages/Consultar/Index'
 const router = createBrowserRouter([
   {
     path: '/login',
-    element: <Login/>,
+    element: <Login />,
   },
 
   {
     path: '/home',
-    element: <Home/>,
+    element: <Home />,
   },
-/*
-  {
-    path: '/home',
-    element:  
-    ( 
-      <PrivateRoute>
-        <Home/>
-      </PrivateRoute>
-    ) 
-  },
-  */
+  /*
+    {
+      path: '/home',
+      element:  
+      ( 
+        <PrivateRoute>
+          <Home/>
+        </PrivateRoute>
+      ) 
+    },
+    */
   {
     path: '/recover_password',
-    element: <RecoverPassword/>
+    element: <RecoverPassword />
   },
   {
     path: '/novaSenha',
-    element: <NovaSenha/>
+    element: <NovaSenha />
   },
 
   {
     path: '/register',
-    element: <Cadastro/>
+    element: <Cadastro />
   },
   {
     path: '/register2',
-    element: <Cadastro2/>
+    element: <Cadastro2 />
   },
   {
     path: '/register3',
-    element: <Cadastro3/>
+    element: <Cadastro3 />
   },
   {
     path: '/reservar',
-    element: <Reservas/>
+    element: <Reservas />
   },
   {
     path: '/consultar',
-    element: <Consultar/>
+    element: <Consultar />
   }
 
 ]);
 
-export {router};
+export { router };
