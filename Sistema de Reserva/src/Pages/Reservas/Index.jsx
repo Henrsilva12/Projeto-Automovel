@@ -26,6 +26,36 @@ function Reservas() {
     carousel.current.scrollLeft += carousel.current.offsetWidth;
   };
 
+  const verifyIfUserIsLoggedIn = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+
+      alert("Você precisa estar logado para conseguir reservar um carro. Vou te redirecionar para a página de login.");
+      window.location.href = "/login";
+    }
+  };
+
+  const verifyIfDataSelectedIsValid = () => {
+    //a data selecionada não pode ser menor que a data atual
+    const dataReserva = document.getElementById("data-reserva").value;
+    const dataFinal = document.getElementById("data-final").value;
+
+    const dataAtual = new Date();
+    const dataReservaDate = new Date(dataReserva);
+
+    if (dataReservaDate < dataAtual) {
+      alert("A data de retirada não pode ser menor que a data atual.");
+      return false;
+    }
+
+    if (dataReservaDate > dataFinal) {
+      alert("A data de devolução não pode ser menor que a data de retirada.");
+      return false;
+    }
+
+    return true;
+  }
+
   const recarregarPagina = () => {
     window.location.reload();
   };
@@ -35,6 +65,13 @@ function Reservas() {
   };
 
   const alugarCarro = async (carro) => {
+
+    verifyIfUserIsLoggedIn();
+    
+    if (!verifyIfDataSelectedIsValid()) {
+      return;
+    }
+    
     const dataReserva = document.getElementById("data-reserva").value;
     const horarioReserva = document.getElementById("horario-reserva").value;
     const dataFinal = document.getElementById("data-final").value;
